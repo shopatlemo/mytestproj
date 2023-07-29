@@ -4,20 +4,18 @@ const app = express()
 const port = 5000
 
 // Static Files
-// app.use(express.static('public'));
-app.use(express.static('/'));
-// // Specific folder example
-app.use('/css', express.static(__dirname + '/css'))
-app.use('/js', express.static(__dirname + '/js'))
-app.use('/img', express.static(__dirname + '/images'))
-app.use('/html', express.static(__dirname + '/html'))
+app.use(express.static('public'));
+var bodyParser = require('body-parser');
+
+// Specific folder example
+app.use('/css', express.static(__dirname + 'public/css'))
+app.use('/js', express.static(__dirname + 'public/js'))
+app.use('/img', express.static(__dirname + 'public/images'))
+app.use('/html', express.static(__dirname + 'public/html'))
 
 // Set View's
-// app.set('views', './views');
-// app.set('view engine', 'ejs');
-
-// app.set('views', '/html');
-// app.set('view engine', 'ejs');
+app.set('views', './views');
+app.set('view engine', 'ejs');
 
 // Navigation
 app.get('', (req, res) => {
@@ -28,4 +26,14 @@ app.get('/about', (req, res) => {
    res.sendFile(__dirname + '/views/about.html')
 })
 
+app.post('', (req, res) => {
+    res.render('index', { text: 'Hey' })
+})
+
+app.post('/',(req,res) => {
+    res.send('POST request to the homepage')
+})
+app.post('/about', (req, res) => {
+   res.sendFile(__dirname + '/views/about.html')
+})
 app.listen(port, () => console.info(`App listening on port ${port}`))
