@@ -60,14 +60,10 @@
 
         var options = {
       zoom:8,
-
       center: {lat:17.70401, lng:-83.29963
     }
       
     };
-    var map=new google.maps.Map(document.getElementById('map'),options);
-    var myicon='https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
- 
 
   
      // add a listner for click on map 
@@ -121,14 +117,18 @@
       infoWindow.open(map,marker);
      });
     }
-        
-        
+    var map=new google.maps.Map(document.getElementById('map'),options);
+    var myicon='https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+ 
+       
 
 
     }
 </script>
 
-
+<script async defer 
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCce3i29M_ljIKLqzM5OZWoZirLMkahzI&callback=initMap">
+</script>
 
 
 
