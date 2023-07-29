@@ -15,4 +15,28 @@
         <button onclick="location.href='second.html'" class="btn btn-prim btn--block">Learn More</button>
     </div>
 </body>
+<script type="text/javascript">
+    let result_for_marker = [];
+    var zip_code="27560";
+    result_for_marker = fetch_data();
+     function fetch_data() {
+            let result;
+            let final_result;
+            let final_array = [];
+            // 
+            myresult = await fetch('../data/mydaata.json')
+                .then((response) => result = response.json())
+                .then((response) => {
+                    Object.keys(response).forEach(k => {
+                        let obj = response[k];
+                        if (obj.zip == zip_code ) {
+                            final_result = JSON.stringify(obj)
+                            final_array.push(final_result)
+                        }
+                    })
+                });
+            return final_array;
+
+        }
+</script>
 </html>
