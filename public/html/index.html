@@ -9,16 +9,36 @@
 <body>
     
     Index baby
-    <img src="../img/myimg.png" alt="cat">
+    <!-- <img src="../img/myimg.png" alt="cat"> -->
     <h1>Welcome to my Index.html at html <dir></dir></h1>
     <div id="lm">
         <button onclick="location.href='second.html'" class="btn btn-prim btn--block">Learn More</button>
     </div>
 </body>
+<table>
+    <tr>
+        <td>
+
+
 <script type="text/javascript">
-    let result_for_marker = [];
+    let result = [];
     var zip_code="27560";
-    result_for_marker = fetch_data();
+    result = fetch_data();
+    result = JSON.parse(JSON.stringify(result));
+    for (i = 0; i < result.length; i++) {  
+                const rec = JSON.parse(result[i]);
+                console.log('res_rec='+ res_rec)
+                document.write(rec.first_name);
+                document.write('</td>');
+                document.write('<td>');
+                document.write(rec.last_name);
+                document.write('</td>');
+                document.write('</tr>');
+                document.write('<tr>');
+                
+
+
+
      function fetch_data() {
             let result;
             let final_result;
@@ -39,4 +59,8 @@
 
         }
 </script>
+</td>
+    </tr>
+</table>
+</body>
 </html>
