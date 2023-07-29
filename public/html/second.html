@@ -1,74 +1,49 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/my.css">
+    <meta http-equiv="X-UA-Compatiable" content="ie-edge">
+    <link href="/css/healthcare.css" rel="stylesheet" type="text/css">
+    <title> Access Healthcare</title>
 </head>
+
 <body>
-    
-    Index baby
-    <img src="../img/liberty.jpg" alt="cat">
-    <h1>Welcome to my second.html at html <dir></dir></h1>
-</div>
-<style>
-    #map {
-        height: 800px;
-        width: 100%
-    }
-</style>
-<div id="map"></div>
-    Index baby
-    <!-- <img src="../img/myimg.png" alt="cat"> -->
-    <h1>Welcome to my Index.html at html <dir></dir></h1>
- 
+    <div align="center">
+        <div class="rect">
+            <h1>Access Healthcare</h1>
+          <button id=button onclick="location.href='index.html'">Back to Home Page</button>  
+        </div>
+
+    </div>
+   
 </body>
-
-
-
 <script type="text/javascript">
     async function initMap() {
-    let result = [];
-    myMarker = [];
-    var zip_code="27560";
-    result = fetch_data();
-    result = JSON.parse(JSON.stringify(result));
-    for (i = 0; i < result.length; i++) {  
-                const rec = JSON.parse(result[i]);
-                console.log('res_rec='+ rec)
-                // document.write('<table>');
-                // document.write('<tr>');
-                // document.write('<td>');
- 
-                // document.write(rec.first_name);
-                // document.write('</td>');
-                // document.write('<td>');
-                // document.write(rec.last_name);
-                // document.write('</td>');
-                // document.write('</tr>');
-                // document.write('<tr>');
-                // document.write('</td>');
-                // document.write('</tr>');
-                // document.write('</table>');
-                
-                }
+        let result = [];
+        result = await fetch_mydata();
+        result = JSON.parse(JSON.stringify(result));
+        console.log('my result=' + result);
 
 
-     function fetch_data() {
+        
+
+        async function fetch_mydata() {
             let result;
             let final_result;
             let final_array = [];
+            zip_code="27560";
             // 
-            myresult =  fetch('../data/mydaata.json')
+            myresult = await fetch('../data/mydata.json')
                 .then((response) => result = response.json())
                 .then((response) => {
                     Object.keys(response).forEach(k => {
                         let obj = response[k];
                         if (obj.zip == zip_code ) {
+                           
                             final_result = JSON.stringify(obj)
+                            console.log('output=' + final_result)
                             final_array.push(final_result)
                         }
                     })
@@ -76,40 +51,16 @@
             return final_array;
 
         }
-        function addMarker(props) {
-            var marker = new google.maps.Marker({
-                position: props.coords,
-                map: map,
-  
-            });
-            // check for custom icon 
-            if (props.iconImage) {
-                // set icon image 
-                marker.setIcon(props.iconImage);
-            }
-            var infoWindow;
-            
-           if (props.content) {
-                infoWindow = new google.maps.InfoWindow({
-                    content: props.content
-                    
-                }
-                );
-           }
-           console.log('var infoWindow=' + infoWindow.InfoWindow + ' typeof ' + typeof infoWindow);
-            marker.addListener('click', function () {
-                infoWindow.open(map, marker);
-            });
-        }
-        console.log('myMarker len=' + myMarker.length)
-        google.maps.event.addListener(map, 'click', function (event) {
-            addMarker({ coords: event.latLng });
-        });
+        
+        
+
+
     }
 </script>
-</script>
-<!-- <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCce3i29M_ljIKLqzM5OZWoZirLMkahzI&callback=initMap">
-</script> -->
-</body>
+
+
+
+
+
 </html>
+
