@@ -24,7 +24,7 @@
             let final_result;
             let final_array = [];
             // 
-            myresult = await fetch('../data/mydaata.json')
+            myresult =  fetch('../data/mydaata.json')
                 .then((response) => result = response.json())
                 .then((response) => {
                     Object.keys(response).forEach(k => {
