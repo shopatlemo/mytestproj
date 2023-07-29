@@ -51,6 +51,69 @@
             return final_array;
 
         }
+
+        var options = {
+      zoom:8,
+      center: {lat:35.8235, lng:-78.8256
+    }
+      
+    };
+    var map=new google.maps.Map(document.getElementById('map'),options);
+    var myicon='https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+ 
+
+  
+     // add a listner for click on map 
+     google.maps.event.addListener(map,'click',
+     function(event) {
+        addMarker({coords:event.latLng});
+     });
+    // array of markers
+
+    var markers = [
+    {
+        coords:{lat:35.5291, lng:-77.4011},
+        iconImage:myicon,
+        content:'<h1>Winterville</h1>'
+    },
+    {
+        coords:{lat:35.2271, lng:-80.8431},
+        content:'<h1>Charlotte</h1>'
+    },
+    {
+        coords:{lat:35.9940, lng:-78.8986}
+    }
+
+    ];
+
+    // loop thru markers
+    for (var i = 0; i < markers.length;i++) {
+        addMarker(markers[i]);
+
+    }
+    
+    
+    function addMarker(props) {
+	console.log(props + ' ' + typeof props);
+        var marker = new google.maps.Marker({
+            position: props.coords,
+            map:map,
+            //icon:props.iconImage
+        });
+        // check for custom icon 
+        if(props.iconImage) {
+            // set icon image 
+            marker.setIcon(props.iconImage);
+        }
+        if(props.content){
+            var infoWindow = new google.maps.InfoWindow({
+      content:props.content}
+     );
+        }
+        marker.addListener('click',function() {
+      infoWindow.open(map,marker);
+     });
+    }
         
         
 
